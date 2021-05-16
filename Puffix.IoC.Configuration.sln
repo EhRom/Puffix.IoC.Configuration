@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puffix.IoC.Configuration", "Puffix.IoC.Configuration\Puffix.IoC.Configuration.csproj", "{1065B1E4-6663-4C54-9CD2-3D4902CE09AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puffix.IoC.Configuration", "Puffix.IoC.Configuration\Puffix.IoC.Configuration.csproj", "{1065B1E4-6663-4C54-9CD2-3D4902CE09AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BA87B876-50F0-4EE7-89CA-2DC7451824A7}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
