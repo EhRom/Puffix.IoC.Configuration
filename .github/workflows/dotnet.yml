@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: '6.0.x'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -24,4 +24,4 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Publish Nuget Package
-      run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.1.1.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.2.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
