@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0</TargetFrameworks>
+	<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <Authors>Puffix.io - Romain Ehret</Authors>
     <Company>Puffix.io - Romain Ehret</Company>
-    <Copyright>Copyright 2022 (c) Puffix / Romain Ehret. All rights reserved.</Copyright>
+    <Copyright>Copyright 2023 (c) Puffix / Romain Ehret. All rights reserved.</Copyright>
     <Description>Extension for including Microsoft.Extension.Configuration in the Puffix IoC library.</Description>
     <PackageLicenseFile>Licence.txt</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
@@ -15,9 +15,9 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <PackageReleaseNotes>Extension for including Microsoft.Extensions.Configuration in the Puffix IoC library.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.1.0</Version>
-	<AssemblyVersion>3.1.0.0</AssemblyVersion>
-	<FileVersion>3.1.0.0</FileVersion>
+    <Version>3.2.0</Version>
+	<AssemblyVersion>3.2.0.0</AssemblyVersion>
+	<FileVersion>3.2.0.0</FileVersion>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -37,8 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-    <PackageReference Include="Puffix.IoC" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Puffix.IoC" Version="3.2.0" />
   </ItemGroup>
 
 </Project>
