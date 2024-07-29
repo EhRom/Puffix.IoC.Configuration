@@ -4,5 +4,5 @@ namespace Puffix.IoC.Configuration;
 
 public interface IIoCContainerWithConfiguration : IIoCContainer
 {
-    IConfigurationRoot ConfigurationRoot { get; }
+    IConfiguration Configuration { get; }
 }
