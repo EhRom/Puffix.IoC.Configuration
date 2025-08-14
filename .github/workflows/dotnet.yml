@@ -2,7 +2,12 @@ name: .NET Core
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - '**'
+      - '!**.md'
+      - '.github/workflows/*.yml'
   pull_request:
     branches: [ main ]
 
@@ -12,20 +17,26 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
+                    
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+
     - name: Publish Nuget Package
       run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.${{ env.PACKAGE_VERSION }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

@@ -23,19 +23,19 @@ public class IoCContainer : IIoCContainerWithConfiguration
 {
     private readonly IContainer? container;
 
-    public IConfigurationRoot ConfigurationRoot { get; }
+    public IConfiguration Configuration { get; }
 
-    public IoCContainer(ContainerBuilder containerBuilder, IConfigurationRoot configuration)
+    public IoCContainer(ContainerBuilder containerBuilder, IConfiguration configuration)
     {
         // Self-register the container.
         containerBuilder.Register(_ => this).As<IIoCContainerWithConfiguration>().SingleInstance();
         containerBuilder.Register(_ => this).As<IIoCContainer>().SingleInstance();
 
         container = containerBuilder.Build();
-        ConfigurationRoot = configuration;
+        Configuration = configuration;
     }
 
-    public static IIoCContainerWithConfiguration BuildContainer(IConfigurationRoot configuration)
+    public static IIoCContainerWithConfiguration BuildContainer(IConfiguration configuration)
     {
         ContainerBuilder containerBuilder = new ContainerBuilder();
 
@@ -100,7 +100,7 @@ In the sample below, the following packages are referenced:
 The container may be initialized like this:
 
 ``` csharp
-IConfigurationRoot configuration = new ConfigurationBuilder()
+IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appSettings.json", optional: false, reloadOnChange: true)
             .Build();
@@ -117,8 +117,8 @@ MyObject myObject = container.Resolve<MyObject>();
 You can also access to the configuration like this:
 
 ``` csharp
-string myStringParameter = container.ConfigurationRoot[nameof(myStringParameter)];
-long myLongParameter = container.ConfigurationRoot.GetValue<int>(nameof(myLongParameter));
+string myStringParameter = container.Configuration[nameof(myStringParameter)];
+long myLongParameter = container.Configuration.GetValue<int>(nameof(myLongParameter));
 ```
 
 ## Use Polly to manage HttpClient
@@ -147,19 +147,19 @@ public class IoCContainer : IIoCContainerWithConfiguration
 {
     private readonly IContainer? container;
 
-    public IConfigurationRoot ConfigurationRoot { get; }
+    public IConfiguration Configuration { get; }
 
-    public IoCContainer(ContainerBuilder containerBuilder, IConfigurationRoot configuration)
+    public IoCContainer(ContainerBuilder containerBuilder, IConfiguration configuration)
     {
         // Self-register the container.
         containerBuilder.Register(_ => this).As<IIoCContainerWithConfiguration>().SingleInstance();
         containerBuilder.Register(_ => this).As<IIoCContainer>().SingleInstance();
 
         container = containerBuilder.Build();
-        ConfigurationRoot = configuration;
+        Configuration = configuration;
     }
 
-    public static IIoCContainerWithConfiguration BuildContainer(IConfigurationRoot configuration)
+    public static IIoCContainerWithConfiguration BuildContainer(IConfiguration configuration)
     {
         // Register HttpClientMessageFactory
         ServiceCollection services = new ServiceCollection();
@@ -223,7 +223,7 @@ public class IoCContainer : IIoCContainerWithConfiguration
 The container may be initialized like this:
 
 ``` csharp
-IConfigurationRoot configuration = new ConfigurationBuilder()
+IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appSettings.json", optional: false, reloadOnChange: true)
             .Build();
@@ -240,8 +240,8 @@ MyObject myObject = container.Resolve<MyObject>();
 You can also access to the configuration like this (refer to the paragraph below for the required packages):
 
 ``` csharp
-string myStringParameter = container.ConfigurationRoot[nameof(myStringParameter)];
-long myLongParameter = container.ConfigurationRoot.GetValue<int>(nameof(myLongParameter));
+string myStringParameter = container.Configuration[nameof(myStringParameter)];
+long myLongParameter = container.Configuration.GetValue<int>(nameof(myLongParameter));
 ```
 
 Finally, here is a sample class where an `HttpClient` is needed:
