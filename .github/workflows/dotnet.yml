@@ -1,4 +1,4 @@
-name: .NET Core
+name: Build & Publidh .NET Package
 
 on:
   push:
@@ -10,31 +10,39 @@ on:
       - '.github/workflows/*.yml'
 
 env:
-  DOTNET_VERSION: '9.0.x'
-  PACKAGE_VERSION: 3.3.2
+  DOTNET_VERSION: '10.0.x'
+  PACKAGE_VERSION: 10.0.0
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      id: checkout
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - name: Setup .NET Core
+      id: setup-dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-                    
-    - name: Restore dependencies
+
+    - name: Install dependencies
+      id: dotnet-restore
       run: dotnet restore
 
     - name: Build
+      id: dotnet-build
       run: dotnet build --configuration Release --no-restore
 
     - name: Test
+      id: dotnet-test
       run: dotnet test --no-restore --verbosity normal
 
     - name: Publish Nuget Package
+      id: dotnet-nuget-push
       run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.${{ env.PACKAGE_VERSION }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
