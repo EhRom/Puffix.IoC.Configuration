@@ -1,5 +1,6 @@
 name: Build & Publidh .NET Package
-
+permissions:
+  contents: read
 on:
   push:
     branches:
@@ -11,7 +12,7 @@ on:
 
 env:
   DOTNET_VERSION: '10.0.x'
-  PACKAGE_VERSION: 10.0.1
+  PACKAGE_VERSION: 10.0.2
 
 jobs:
   build:
