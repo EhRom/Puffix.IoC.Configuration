@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: global
     permissions:
-      id-token: write  # enable GitHub OIDC token issuance for this job
+      id-token: write
     
     steps:
     - name: NuGet login (OIDC)
