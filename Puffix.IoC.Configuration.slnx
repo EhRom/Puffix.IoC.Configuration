@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/Build/">
-    <File Path=".github/workflows/dotnet.yml" />
+    <File Path=".github/workflows/main.yml" />
   </Folder>
   <Project Path="Puffix.IoC.Configuration/Puffix.IoC.Configuration.csproj" />
 </Solution>
