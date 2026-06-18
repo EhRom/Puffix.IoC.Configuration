@@ -12,14 +12,23 @@ on:
 
 env:
   DOTNET_VERSION: '10.0.x'
-  PACKAGE_VERSION: 10.0.8
+  PACKAGE_VERSION: 10.0.9
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: global
+    permissions:
+      id-token: write  # enable GitHub OIDC token issuance for this job
+    
     steps:
+    - name: NuGet login (OIDC)
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: ${{ secrets.NUGET_USER }}
+
     - name: Checkout
       id: checkout
       uses: actions/checkout@v6
@@ -46,4 +55,4 @@ jobs:
 
     - name: Publish Nuget Package
       id: dotnet-nuget-push
-      run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.${{ env.PACKAGE_VERSION }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push /home/runner/work/Puffix.IoC.Configuration/Puffix.IoC.Configuration/Puffix.IoC.Configuration/bin/Release/Puffix.IoC.Configuration.${{ env.PACKAGE_VERSION }}.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
