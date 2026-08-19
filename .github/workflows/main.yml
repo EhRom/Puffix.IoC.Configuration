@@ -12,7 +12,7 @@ on:
 
 env:
   DOTNET_VERSION: '10.0.x'
-  PACKAGE_VERSION: 10.0.10
+  PACKAGE_VERSION: 10.0.11
 
 jobs:
   build:
@@ -31,13 +31,13 @@ jobs:
 
     - name: Checkout
       id: checkout
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
     - name: Setup .NET Core
       id: setup-dotnet
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
