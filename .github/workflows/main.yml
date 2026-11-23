@@ -1,4 +1,4 @@
-name: Build & Publidh .NET Package
+name: Build & Publish .NET Package
 permissions:
   contents: read
 on:

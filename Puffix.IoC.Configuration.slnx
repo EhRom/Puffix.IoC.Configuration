@@ -2,5 +2,8 @@
   <Folder Name="/Build/">
     <File Path=".github/workflows/main.yml" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="Puffix.IoC.Configuration/Puffix.IoC.Configuration.csproj" />
 </Solution>
